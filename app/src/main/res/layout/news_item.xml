@@ -5,7 +5,7 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="@dimen/default_half_margin">
 
 
     <!-- Media -->
@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/ivThumbnail"
             android:layout_width="match_parent"
-            android:layout_height="194dp"
+            android:layout_height="@dimen/news_thumbnail_height"
             android:contentDescription="@string/cd_thumbnail"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
