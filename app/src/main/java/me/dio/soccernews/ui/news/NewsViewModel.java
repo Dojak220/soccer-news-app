@@ -1,5 +1,7 @@
 package me.dio.soccernews.ui.news;
 
+import android.os.AsyncTask;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -7,28 +9,26 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
-import me.dio.soccernews.data.remote.SoccerNewsAPI;
+import me.dio.soccernews.data.SoccerNewsRepository;
 import me.dio.soccernews.domain.News;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewsViewModel extends ViewModel {
 
+    public enum State {
+        DOING, DONE, ERROR
+    }
+
     private final MutableLiveData<List<News>> newsData = new MutableLiveData<>();
-    private final SoccerNewsAPI api;
+    private final MutableLiveData<State> state = new MutableLiveData<>();
+
 
     public NewsViewModel() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://dojak220.github.io/soccer-news-api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        api = retrofit.create(SoccerNewsAPI.class);
-
-        api.getNews().enqueue(handleCallback());
+        state.setValue(State.DOING);
+        SoccerNewsRepository.getInstance().getRemoteApi().getNews().enqueue(handleCallback());
+        state.setValue(State.DONE);
     }
 
     @NonNull
@@ -51,9 +51,15 @@ public class NewsViewModel extends ViewModel {
         };
     }
 
-
+    public void saveNews(News news) {
+        AsyncTask.execute(() ->  SoccerNewsRepository.getInstance().getLocalDatabase().newsDao().favorite(news));
+    }
 
     public LiveData<List<News>> getNews() {
         return newsData;
+    }
+
+    public LiveData<State> getState() {
+        return state;
     }
 }
