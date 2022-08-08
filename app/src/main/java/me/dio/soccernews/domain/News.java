@@ -1,47 +1,25 @@
 package me.dio.soccernews.domain;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class News {
-    private String title;
-    private String subtitle;
-    private String image;
-    private String link;
+    @PrimaryKey
+    public int id;
+    public String title;
+    public String subtitle;
+    public String image;
+    public String link;
+    public boolean favorite;
 
-    public News(String title, String subtitle, String image, String link) {
+    public News(int id, String title, String subtitle, String image, String link, boolean favorite) {
+        this.id = id;
         this.title = title;
         this.subtitle = subtitle;
         this.image = image;
         this.link = link;
+        this.favorite = favorite;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
 }
