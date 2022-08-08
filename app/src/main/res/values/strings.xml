@@ -7,4 +7,5 @@
     <string name="cd_share_button">Share</string>
     <string name="cd_favorite_button">Favorite</string>
     <string name="txt_share">Share</string>
+    <string name="error_api">Network error</string>
 </resources>

@@ -1,5 +1,7 @@
 package me.dio.soccernews.ui.news;
 
+import android.os.AsyncTask;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -24,6 +26,10 @@ public class NewsViewModel extends ViewModel {
 
 
     public NewsViewModel() {
+        findNews();
+    }
+
+    public void findNews() {
         state.setValue(State.DOING);
         SoccerNewsRepository.getInstance().getRemoteApi().getNews().enqueue(handleCallback());
         state.setValue(State.DONE);
@@ -49,6 +55,10 @@ public class NewsViewModel extends ViewModel {
                 /// TODO: Create error handler
             }
         };
+    }
+
+    public void saveNews(News news) {
+        AsyncTask.execute(() -> SoccerNewsRepository.getInstance().getLocalDatabase().newsDao().favorite(news));
     }
 
     public LiveData<List<News>> getNews() {
