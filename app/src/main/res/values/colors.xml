@@ -12,7 +12,7 @@
     <color name="grey">#FF666666</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="active_color">@color/primary_200</color>
+    <color name="active_color">@color/secondary_700</color>
     <color name="inactive_color">@color/grey</color>
 
 </resources>
