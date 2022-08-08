@@ -6,3 +6,5 @@ App Android Nativo para apresentação de notícias sobre o futebol feminino bra
     - [release/android-jetpack-material-design](https://github.com/Dojak220/soccer-news-app/tree/release/android-jetpack-material-design)
 2. Abstraindo o domínio de apps Android nativos com Java
     - [release/abstraindo-dominio-de-apps-android-nativos-com-java](https://github.com/Dojak220/soccer-news-app/tree/release/abstraindo-dominio-de-apps-android-nativos-com-java)
+3. Consumo de APIs e persistência de dados locais
+    - [release/consumo-de-apis-e-persistencia-de-dados-locais](https://github.com/Dojak220/soccer-news-app/tree/release/consumo-de-apis-e-persistencia-de-dados-locais)
